@@ -1,0 +1,13 @@
+{
+  "url": "http://intreza.sisteza.com:8083/public/api/listado_documentos_creditos",
+  "tipo": "GET",
+  "params": [
+    {
+      "nombre": "token",
+      "tipo": "String",
+      "requerido": true,
+      "defecto": "",
+      "ejm": ""
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+[
+
+  {
+    "texto": "RR.HH.",
+    "icono": "icon-feather-users",
+    "items": [
+      {
+        "texto": "Empleados",
+        "icono": "icon-feather-users",
+        "ruta": "usuarios"
+      },
+      {
+        "texto": "Dispositivos asignados",
+        "icono": "icon-feather-tablet",
+        "ruta": "usuario-dispositivos"
+      }
+    ]
+  },
+
+  {
+    "texto": "EZA Digital",
+    "icono": "icon-line-awesome-share-alt",
+    "items": [
+      {
+        "texto": "Catálogos",
+        "icono": "icon-feather-book-open",
+        "items": [
+          {
+            "texto": "Países",
+            "texto_alt": "Paises",
+            "icono": "icon-line-awesome-globe",
+            "ruta": "paises"
+          },
+          {
+            "texto": "Departamento",
+            "texto_alt": "Departamento",
+            "icono": "icon-line-awesome-building",
+            "ruta": "departamentos-geo"
+          },
+          {
+            "texto": "Municipio",
+            "texto_alt": "Municipio",
+            "icono": "icon-line-awesome-map-marker",
+            "ruta": "municipios"
+          },
+          {
+            "texto": "Barrios",
+            "texto_alt": "Barrios",
+            "icono": "icon-line-awesome-home",
+            "ruta": "barrios"
+          },
+          {
+            "texto": "Documentos",
+            "texto_alt": "documentos",
+            "icono": "las la-sitemap",
+            "ruta": "documentos-intreza"
+          },
+          {
+            "texto": "Productos",
+            "texto_alt": "productos",
+            "icono": "las la-boxes",
+            "ruta": "productos"
+          },
+          {
+            "texto": "Metas",
+            "texto_alt": "metas",
+            "icono": "icon-line-awesome-crosshairs",
+            "icono-alt": "icon-line-awesome-chalkboard",
+            "icono-alt2": "icon-line-awesome-font-awesome",
+            "ruta": "ezadigital-metas"
+          }
+        ]
+      },
+      {
+        "texto": "Cliente",
+        "icono": "icon-line-awesome-users",
+        "items": [
+          {
+            "texto": "Clientes",
+            "texto_alt": "Clientes",
+            "icono": "las la-portrait",
+            "ruta": "clientes"
+          },
+          {
+            "texto": "Personas",
+            "texto_alt": "Personas",
+            "icono": "las la-address-card",
+            "ruta": "clientes-persona"
+          },
+          {
+            "texto": "Empresas",
+            "texto_alt": "Empresas",
+            "icono": "icon-line-awesome-industry",
+            "ruta": "clientes-empresa"
+          }
+        ]
+      },
+      {
+        "texto": "Credito",
+        "icono": "las la-donate",
+        "items": [
+          {
+            "texto": "Presolicitud",
+            "texto_alt": "presolicitud",
+            "icono": "las la-donate",
+            "ruta": "presolicitud"
+          },
+          {
+            "texto": "Seguimiento de credito",
+            "texto_alt": "Seguimiento de credito",
+            "icono": "las la-business-time",
+            "ruta": "seguimiento-credito"
+          }
+        ]
+      },
+      {
+        "texto": "Reporte",
+        "icono": "las la-clipboard",
+        "items": [
+          {
+            "texto": "Presolicitudes",
+            "texto_alt": "presolicitudes",
+            "icono": "las la-donate",
+            "ruta": "reporte-presolicitud"
+          }
+        ]
+      },
+      {
+        "texto": "Importar",
+        "icono": "icon-feather-upload",
+        "ruta": "importar"
+      }
+    ]
+  }
+]

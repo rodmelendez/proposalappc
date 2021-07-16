@@ -1,0 +1,34 @@
+{
+  "url": "http://intreza.sisteza.com:8083/public/api/registrar_ubicacion_usuario",
+  "tipo": "POST",
+  "params": [
+    {
+      "nombre": "token",
+      "tipo": "String",
+      "requerido": true,
+      "defecto": "",
+      "ejm": ""
+    },
+    {
+      "nombre": "longitud",
+      "tipo": "String",
+      "requerido": true,
+      "defecto": "",
+      "ejm": ""
+    },
+    {
+      "nombre": "latitud",
+      "tipo": "String",
+      "requerido": true,
+      "defecto": "",
+      "ejm": ""
+    },
+    {
+      "nombre": "fecha_hora",
+      "tipo": "String",
+      "requerido": false,
+      "defecto": "",
+      "ejm": "2019-12-31 13:59:59"
+    }
+  ]
+}

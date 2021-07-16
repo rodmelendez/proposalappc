@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - Documentación</title>
+    <meta name="description" content="Documentación para las API de JAM IT"/>
+    <!--<link rel="shortcut icon" href="favicon.ico">-->
+    <link rel="stylesheet" type="text/css" href="css/jsonview.css"/>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/component.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <style type="text/css">
+        .menu__breadcrumbs {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .output {
+            font-family: "Source Code Pro", monospace;
+            background-color: rgba(0, 0, 0, .1);
+            border: none;
+            border-radius: 3px;
+            box-shadow: 0 6px 0 0 rgba(0, 0, 0, .3) inset;
+            display: block;
+            margin: 0 0 1.5rem;
+            max-width: 100%;
+            padding: 1.5rem;
+            width: 100%;
+            letter-spacing: 0;
+        }
+        .output .json-key {
+            color: #8686fc !important;
+        }
+        /*.output .hide {
+            display: flex;
+        }*/
+    </style>
+</head>
+
+<body>
+<!-- Main container -->
+<div class="container">
+    <!-- Blueprint header -->
+    <header class="bp-header cf">
+        <div class="dummy-logo">
+            <h2 class="dummy-heading">Index</h2>
+        </div>
+        <div class="bp-header__main">
+            <span class="bp-header__present">API</span>
+            <h1 class="bp-header__title">Documentación</h1>
+        </div>
+    </header>
+
+    <button class="action action--open" aria-label="Abrir Menu"><span class="icon icon--menu"></span></button>
+    <nav id="ml-menu" class="menu">
+        <button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+        <div class="menu__wrap">
+            <!--<ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="Inicio">
+                <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">INTREZA</a></li>
+            </ul>
+            &lt;!&ndash; INTREZA &ndash;&gt;
+            <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="INTREZA" data-id="intreza">
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#" data-id="inicio_sesion">Inicio de sesión</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Ubicación de usuario</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1" aria-owns="submenu-1-1" href="#">Documento de crédito</a></li>
+            </ul>
+            &lt;!&ndash; Submenu 1-1 &ndash;&gt;
+            <ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu" aria-label="Documento de crédito" data-id="intreza">
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Registrar</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Registrar foto</a></li>
+            </ul>-->
+            <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="INTREZA" data-id="intreza">
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#" data-id="inicio_sesion">Inicio de sesión</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#" data-id="ubicacion_usuario">Ubicación de usuario</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">Documento de crédito</a></li>
+            </ul>
+            <!-- Submenu 1-1 -->
+            <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Documento de crédito" data-id="intreza">
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#" data-id="documento_credito_listado">Listado</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#" data-id="documento_credito">Registrar</a></li>
+                <li class="menu__item" role="menuitem"><a class="menu__link" href="#" data-id="documento_credito_foto">Registrar fotos</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="seleccionar">
+            <p class="info">Seleccionar endpoint</p>
+        </div>
+        <form id="formulario" class="formulario hidden" action="" method="get">
+            <div id="wrapper">
+                <div id="generator">
+                    <div class="container">
+                        <div class="row add-top">
+                            <div class="g-12">
+                                <h2 class="url">JSON</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="eventData" class="g-12">
+                                <div class="row">
+                                    <div class="g-12 event-box">
+                                        <div id="contenedor_parametros" class="row">
+                                            <!--<div class="g-4">
+                                                <input type="text" class="form-control" data-name="event" placeholder="Event" value="">
+                                            </div>>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row remove-bottom">
+                            <div class="g-12">
+                                <button type="submit" class="addEvent left">Enviar</button>
+                                <!--<button class="selectText left">Select All</button>-->
+                                <p class="tipo-metodo count right">-</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--<textarea id="output" placeholder="Resultado" spellcheck="false"></textarea>-->
+                            <output id="output" class="output"></output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /view -->
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/modernizr-custom.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/jsonview.js"></script>
+<script src="js/main.js"></script>
+<script>
+    (function () {
+        let menuEl = document.getElementById('ml-menu'),
+            mlmenu = new MLMenu(menuEl, {
+                // breadcrumbsCtrl : true, // show breadcrumbs
+                // initialBreadcrumb : 'all', // initial breadcrumb text
+                backCtrl: false, // show back button
+                // itemsDelayInterval : 60, // delay between each menu item sliding animation
+                onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+            });
+
+        // mobile menu toggle
+        let openMenuCtrl = document.querySelector('.action--open'),
+            closeMenuCtrl = document.querySelector('.action--close');
+
+        openMenuCtrl.addEventListener('click', openMenu);
+        closeMenuCtrl.addEventListener('click', closeMenu);
+
+        function openMenu() {
+            classie.add(menuEl, 'menu--open');
+            closeMenuCtrl.focus();
+        }
+
+        function closeMenu() {
+            classie.remove(menuEl, 'menu--open');
+            openMenuCtrl.focus();
+        }
+
+        $('#formulario').submit(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const $frm = $(this);
+            const $output = $('#output');
+
+            $output.html('Realizando solicitud...');
+
+            enviarFormulario($frm, function(data) {
+                $output.html('');
+
+                const target = '#output';
+                jsonView.format(JSON.stringify(data), target);
+            });
+
+            return false;
+        });
+
+        // simulate grid content loading
+        const gridWrapper = document.querySelector('.content');
+        const $contenedor = $(gridWrapper);
+        const $form = $contenedor.find('.formulario');
+
+        function loadDummyData(ev, itemName) {
+            ev.preventDefault();
+
+            const $item = $(ev.target);
+
+            const nombre = $item.data('id');
+            const sistema = $item.closest('ul').data('id');
+
+            closeMenu();
+
+            //gridWrapper.innerHTML = '';
+            $contenedor.find('.seleccionar').addClass('hidden');
+            $form.removeClass('hidden');
+
+            classie.add(gridWrapper, 'content--loading');
+
+            $('#output').html('');
+
+            $.getJSON('js/api/' + sistema + '/' + nombre + '.json', function(json) {
+                $form.find('.url').html(json.url);
+                $form.find('.tipo-metodo').html(json.tipo);
+                $form.attr('action', json.url);
+                $form.attr('method', json.tipo);
+
+                const $contenedor_parametros = $form.find('#contenedor_parametros');
+                const params = json.params;
+                $contenedor_parametros.html('');
+
+                if (typeof params === 'object' && params.length) {
+                    let con_valor = false;
+
+                    for (const param of params) {
+                        let ejm = '';
+                        let value = '';
+                        if (typeof param.ejm === 'string' && param.ejm.length) {
+                            ejm = '(ej.: ' + param.ejm + ')';
+                        }
+                        if (typeof param.defecto === 'string' && param.defecto.length) {
+                            value = param.defecto;
+                            con_valor = true;
+                        }
+                        $contenedor_parametros.append(`
+                            <div class="g-6">
+                                <input type="text" name="${param.nombre}" class="form-control" placeholder="${param.nombre} ${ejm}" title="${param.nombre} ${ejm}" value="${value}">
+                            </div>
+                        `);
+                    }
+
+                    if (con_valor && json.tipo.toLowerCase() === 'get') {
+                        setTimeout(() => {
+                            $form.submit();
+                        }, 500);
+                    }
+                }
+
+                classie.remove(gridWrapper, 'content--loading');
+            });
+
+            return false;
+        }
+    })();
+
+    function enviarFormulario($frm, fn_listo, fn_error, metodo, extra_data, url_alt, fn_completado) {
+        //verifica si está especificada la función a ejecutar antes de llamar el Ajax
+        let frm_fn_antes_de_enviar = $frm.attr('data-fn_pre_enviar');
+        if (typeof frm_fn_antes_de_enviar === 'string' && frm_fn_antes_de_enviar.length) {
+            //si la función retorna falso, se cancela el proceso de enviar el formulario
+            if (typeof window[frm_fn_antes_de_enviar] === 'function') {
+                if (!window[frm_fn_antes_de_enviar]($frm)) {
+                    return;
+                }
+            }
+        }
+        let frm_method = $frm.attr('method');
+        metodo = typeof metodo !== 'string' ? (typeof frm_method !== 'undefined' ? frm_method : 'POST') : metodo;
+        extra_data = typeof extra_data !== 'string' ? '' : extra_data;
+        let url = typeof url_alt !== 'string' ? $frm.attr('action') : url_alt;
+        let con_archivo = $frm.hasClass('con-archivo');
+        let form_data;
+        if (con_archivo) {
+            form_data = new FormData($frm[0]);
+        }
+        else {
+            form_data = $frm.serialize() + extra_data;
+        }
+
+        let $holder = $frm.closest('.modal-dialog');
+        if ($holder.length) {
+            $holder.addClass('procesando');
+        }
+        else {
+            $frm.addClass('procesando');
+        }
+
+        $frm.find('.con-error').removeClass('con-error');
+
+        $.ajax({
+            type: metodo,
+            url: url,
+            dataType: 'json',
+            data: form_data,//$frm.serialize() + extra_data // serializes the form's elements.
+            processData: !con_archivo,
+            contentType: !con_archivo ? 'application/x-www-form-urlencoded; charset=UTF-8' : false
+        }).done(function(data) {
+            if (typeof fn_listo === 'function') {
+                fn_listo(data, $frm);
+            }
+            else {
+                let frm_fn_despues_de_enviar = $frm.attr('data-fn_pos_enviar');
+                if (typeof frm_fn_despues_de_enviar === 'string' && frm_fn_despues_de_enviar.length) {
+                    if (typeof window[frm_fn_despues_de_enviar] === 'function') {
+                        window[frm_fn_despues_de_enviar](data, $frm);
+                    }
+                }
+                else if (typeof window['listoEnviarFormulario'] === 'function') {
+                    window['listoEnviarFormulario'](data, $frm);
+                }
+            }
+        }).fail(function(data) {
+            if (typeof fn_error === 'function') {
+                fn_error(data, $frm);
+            }
+            else {
+                if (typeof data['status'] !== 'undefined' && data['status'] === 401) {
+                    alert('La sesión ha finalizado. Por favor inicie sesión.');
+                    window.location = window.location; //redirecciona
+                }
+                else {
+                    const mensaje_generico = 'Error en servidor.';
+                    if (typeof window['mostrarMensaje'] === 'function') {
+                        window['mostrarMensaje']('<i class="fa fa-times"></i> &nbsp;' + mensaje_generico, 'error', 4000, 'swing', 'hinge');
+                    }
+                    else {
+                        alert(mensaje_generico);
+                    }
+                    if (typeof data !== 'undefined' && typeof data.responseText !== 'undefined' && data.responseText.length) {
+                        let ventana = window.open();
+                        ventana.document.write(data.responseText);
+                    }
+                }
+            }
+        }).always(function() {
+            $frm.removeClass('procesando').closest('.modal-dialog').removeClass('procesando');
+            if (typeof fn_completado === 'function') {
+                fn_completado($frm);
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

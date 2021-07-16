@@ -1,0 +1,398 @@
+/* Add here all your CSS customizations */
+
+.grabbing{
+    cursor: grabbing !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button.button, a.button {
+  padding: 6px 15px;
+  line-height: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  display: inline-block;
+  box-shadow: 0 3px 8px rgba(102,103,107,0.15);
+  i {
+    font-size: 18px;
+    top: 3px;
+    margin-right: 2px;
+    margin-left: -2px;
+  }
+
+  &.transparent {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.link {
+  cursor: pointer;
+}
+
+.headline .actions {
+  float: right !important;
+  margin-top: -25px !important;
+}
+
+.status-uploading  {
+  .dropify-wrapper {
+    animation: pulse 1s infinite;
+    pointer-events: none !important;
+  }
+
+  &.padded {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+}
+
+/* cabecera */
+
+.blended {
+  #logo img {
+    mix-blend-mode: difference !important;
+  }
+}
+
+/* menu */
+
+.router-link-exact-active {
+  font-weight: bold;
+  cursor: default !important;
+}
+
+/* avatar */
+
+.freelancer-overview {
+  .freelancer-avatar img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    transition: width .3s, height .3s;
+
+    &.contain {
+      object-fit: contain;
+    }
+  }
+}
+
+/* status */
+
+.item-guardando {
+  display: none;
+}
+
+.guardando {
+  .item-guardando {
+    display: inline-block;
+  }
+
+  .item-guardar {
+    display: none;
+  }
+
+  .button.button-sliding-icon {
+    pointer-events: none;
+    padding-right: 22px;
+
+    i {
+      max-width: 20px;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .btn-guardar {
+    pointer-events: none;
+  }
+}
+
+.item-cargando {
+  display: none !important;
+}
+
+.cargando {
+  .item-cargando {
+    display: inline-block !important;
+
+    i {
+      display: inline-block;
+    }
+  }
+}
+
+/* carnet */
+
+.carnet-previo .carnet {
+  height: auto !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 7px;
+}
+
+/* datepicker */
+
+.datepicker {
+  td.day {
+    width: 30px !important;
+
+    &.today {
+      background: transparent none !important;
+      font-weight: bold;
+      color: #000 !important;
+    }
+  }
+
+  &.datepicker-dropdown {
+    background-color: #f7f8fe !important;
+    z-index: 9999 !important;
+  }
+}
+
+/* dropify */
+
+.dropify-wrapper {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .08);
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 4px;
+
+  .dropify-message {
+    font-size: 30px;
+  }
+
+  .dropify-clear {
+    font-size: 20px !important;
+    border: 0 !important;
+    -webkit-filter: drop-shadow(2px 2px 5px rgba(0,0,0,.3));
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,.3));
+  }
+}
+
+/* switches */
+
+.intermediate .switch-button {
+  background-color: #777 !important;
+}
+
+/* galeria items */
+
+.galeria-print {
+  border: 1px dotted #ccc;
+  margin: 20px;
+}
+
+.galeria-item-titulo {
+  min-height: 25px;
+}
+
+.galeria-print .page-break {
+  clear: both;
+}
+
+.galeria-print table:not(:first-child) {
+  border-top: 1px dotted #ccc !important;
+  margin-top: 50px;
+}
+
+/* dropdown */
+
+@media (min-width: 800px) {
+  .bootstrap-select.btn-group .dropdown-menu li a {
+    white-space: nowrap !important;
+  }
+}
+
+/* side menu bar */
+
+.dashboard-sidebar {
+  overflow-x: hidden;
+}
+
+.dashboard-sidebar-inner {
+  width: 106%;
+}
+
+.dashboard-nav-inner {
+  > ul {
+    /*> li {
+      display: none;
+    }*/
+    position: relative;
+    overflow: hidden;
+    max-height: 30px;
+    margin-top: 18px !important;
+
+    &.abierto {
+      /*> li {
+        display: block;
+      }*/
+      max-height: 1000px;
+      transition: max-height 1s;
+    }
+
+    .menu-icono {
+      position: absolute;
+      top: 0;
+      left: 8px;
+      color: #000;
+      /*background-color: #000;*/
+      font-size: 20px;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding-top: 4px;
+      pointer-events: none;
+    }
+
+    &:before {
+      padding-left: 45px;
+      color: #00008b;
+    }
+
+    &:hover {
+      &:before {
+        color: #000 !important;
+      }
+
+      cursor: pointer;
+      /*font-weight: 800;*/
+    }
+  }
+
+  .input-buscar {
+    border: 0;
+    box-shadow: none !important;
+
+    :focus {
+      box-shadow: none !important;
+    }
+  }
+}
+
+/* carousel slick */
+
+.contenido {
+  text-align: justify;
+  font-size: 15px;
+  color: #000;
+
+
+  br {
+    margin-bottom: 20px;
+  }
+}
+
+.slick-slide .testimonial img {
+  border-radius: 4px;
+  max-height: 500px;
+}
+
+/* datetimepicker */
+
+.bootstrap-datetimepicker-widget {
+  position: absolute;
+  z-index: 999999;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.12) !important;
+  background-color: #f7f8fe !important;
+  border-radius: 4px;
+
+  .list-unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+/* fullcalendar */
+
+.fc {
+
+  .fc-license-message, .fc-license-message * {
+    visibility: hidden !important;
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    color: transparent !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .fc-event {
+    border: 1px solid #fff !important;
+    color: #fff;
+  }
+
+  .fc-content .fc-title {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  .fc-toolbar.fc-header-toolbar {
+    padding: 10px;
+  }
+
+  .fc-button {
+    background-image: none !important;
+  }
+
+}
+
+/* sweet-modal */
+.sweet-modal-overlay {
+  overflow-y: auto;
+}
+
+.sweet-modal {
+ /* margin-top: 84px;*/
+  overflow: visible !important;
+
+  &.is-visible {
+    transform: translate(-50%, -43%) !important;
+  }
+
+  .sweet-content {
+    padding-top: 100px !important;
+  }
+
+  .sweet-action-close:hover {
+    background-color: $primary-color !important;
+  }
+
+  .button-ok {
+    min-width: 100px !important;
+  }
+}

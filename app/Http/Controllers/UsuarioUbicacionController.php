@@ -1,0 +1,75 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Alfredo Fleming
+ * Date: 04/09/2020
+ * Time: 3:23 PM
+ */
+
+namespace App\Http\Controllers;
+
+use App\Ezadigital\Meta;
+use App\Ezadigital\MetaUsuario;
+use App\User;
+use App\UsuarioUbicacion;
+use Illuminate\Support\Facades\Input;
+
+class UsuarioUbicacionController extends Controlador {
+
+    protected $modelo = 'UsuarioUbicacion';
+
+
+    public function data() {
+        $id_usuario = (int)Input::get('id_usuario');
+
+        return [];//MetaUsuario::dataParaUsuario($id_usuario);
+    }
+
+
+    public function cargarUsuariosGet() {
+        $this->especificarRespuesta('usuarios', User::traerData());
+        return $this->retornar();
+    }
+
+
+    public function cargarUbicacionesGet() {
+        $id_usuario = Input::get('id');
+        $desde = Input::get('desde');
+        $hasta = Input::get('hasta');
+
+        if (empty($id_usuario)) {
+            return $this->retornarError('No se ha especificado el usuario.');
+        }
+
+        $ubicaciones = UsuarioUbicacion::ubicacionesDeUsuario($id_usuario, $desde, $hasta);
+        /*$ubicaciones = [
+            [
+                'latitud' => '12.1288',
+                'longitud' => '-86.2883',
+                'fecha_hora' => '2020-09-07',
+            ],
+            [
+                'latitud' => '12.1228',
+                'longitud' => '-86.2823',
+                'fecha_hora' => '2020-09-03',
+            ],
+        ];*/
+
+        //defecto: managua
+        $lat = '12.1238';
+        $lon = '-86.2823';
+
+        foreach ($ubicaciones as $ubicacion) {
+            $lat = $ubicacion['latitud'];
+            $lon = $ubicacion['longitud'];
+            break;
+        }
+
+        $ubicaciones = array_reverse($ubicaciones);
+
+        $this->especificarRespuesta('lat', $lat);
+        $this->especificarRespuesta('lon', $lon);
+        $this->especificarRespuesta('ubicaciones', $ubicaciones);
+        return $this->retornar();
+    }
+}

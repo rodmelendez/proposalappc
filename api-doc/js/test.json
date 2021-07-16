@@ -1,0 +1,8 @@
+{
+	"url": "test.php",
+	"params": {
+		"a": "abc",
+		"b": "cde"
+	},
+	"resultado": "tested testing test"
+}

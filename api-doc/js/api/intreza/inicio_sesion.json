@@ -1,0 +1,20 @@
+{
+  "url": "http://intreza.sisteza.com:8083/public/api/usuario",
+  "tipo": "POST",
+  "params": [
+    {
+      "nombre": "nombre",
+      "tipo": "String",
+      "requerido": true,
+      "defecto": "zsoto@ezacapital.com",
+      "ejm": ""
+    },
+    {
+      "nombre": "contrasena",
+      "tipo": "String",
+      "requerido": true,
+      "defecto": "1234",
+      "ejm": ""
+    }
+  ]
+}

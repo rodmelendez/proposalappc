@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Material-Icons';
+    src:
+        url('../webfonts/Material-Icons.ttf?e8u1sb') format('truetype'),
+        url('../webfonts/Material-Icons.woff?e8u1sb') format('woff'),
+        url('../webfonts/Material-Icons.svg?e8u1sb#Material-Icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Feather-Icons';
+    src:
+        url('../webfonts/Feather-Icons.ttf?7ncawf') format('truetype'),
+        url('../webfonts/Feather-Icons.woff?7ncawf') format('woff'),
+        url('../webfonts/Feather-Icons.svg?7ncawf#Feather-Icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Line-Awesome';
+    src:
+        url('../webfonts/Line-Awesome.ttf?15lwq9') format('truetype'),
+        url('../webfonts/Line-Awesome.woff?15lwq9') format('woff'),
+        url('../webfonts/Line-Awesome.svg?15lwq9#Line-Awesome') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brand-Icons';
+    src:
+        url('../webfonts/Brand-Icons.ttf?blcw31') format('truetype'),
+        url('../webfonts/Brand-Icons.woff?blcw31') format('woff'),
+        url('../webfonts/Brand-Icons.svg?blcw31#Brand-Icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nombre": "Dólar",
+    "simbolo": "$",
+    "codigo_iso": "USD"
+  },
+  {
+    "id": 2,
+    "nombre": "Códoba",
+    "simbolo": "C$",
+    "codigo_iso": "NIO"
+  }
+]

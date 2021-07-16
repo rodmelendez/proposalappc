@@ -1,0 +1,371 @@
+[
+    {
+      "texto": "Opciones",
+      "icono": "icon-line-awesome-gear",
+      "items": [],
+      "visible": false
+    },
+  
+    {
+      "texto": "Activos",
+      "icono": "icon-feather-package",
+      "items": [
+        {
+          "texto": "Estructura",
+          "icono": "icon-feather-package",
+          "items": [
+            {
+              "texto": "Atributos",
+              "icono": "icon-line-awesome-list-alt",
+              "ruta": "atributos"
+            },
+            {
+              "texto": "Tipos de Productos",
+              "icono": "icon-feather-file",
+              "ruta": "tipos"
+            },
+            {
+              "texto": "Categorías",
+              "icono": "icon-feather-file",
+              "ruta": "categorias"
+            },
+            {
+              "texto": "Marcas",
+              "icono": "icon-feather-file",
+              "ruta": "marcas"
+            },
+            {
+              "texto": "Modelos",
+              "icono": "icon-feather-file",
+              "ruta": "modelos"
+            }
+          ]
+        },
+        {
+          "texto": "Productos",
+          "icono": "icon-feather-box",
+          "ruta": "productos"
+        },
+        {
+          "texto": "Entregas",
+          "icono": "icon-feather-file-minus",
+          "ruta": "entregas"
+        }
+      ]
+    },
+  
+    {
+      "texto": "Apps",
+      "icono": "icon-line-awesome-external-link",
+      "items": [
+        {
+          "texto": "Listado",
+          "texto_alt": "Apps",
+          "icono": "icon-feather-package",
+          "ruta": "apps"
+        }
+      ]
+    },
+  
+    {
+      "texto": "Comunicados",
+      "icono": "icon-line-awesome-comments",
+      "items": [
+        {
+          "texto": "Listado",
+          "texto_alt": "Comunicados",
+          "icono": "icon-line-awesome-comments",
+          "ruta": "comunicados"
+        }
+      ]
+    },
+  
+    {
+      "texto": "Documentos",
+      "icono": "icon-feather-file-text",
+      "items": [
+        {
+          "texto": "Categorías",
+          "texto_alt": "Categorías de documentos",
+          "icono": "icon-line-awesome-folder",
+          "ruta": "categorias-documentos"
+        },
+        {
+          "texto": "Documentos",
+          "texto_alt": "Documentos",
+          "icono": "icon-feather-file-text",
+          "ruta": "documentos"
+        }
+      ]
+    },
+  
+    {
+      "texto": "Eventos",
+      "icono": "icon-line-awesome-calendar-o",
+      "items": [
+        {
+          "texto": "Listado",
+          "texto_alt": "Eventos",
+          "icono": "icon-line-awesome-calendar-o",
+          "ruta": "eventos"
+        }
+      ]
+    },
+  
+    {
+      "texto": "IT",
+      "icono": "icon-line-awesome-laptop",
+      "items": [
+        {
+          "texto": "Credenciales",
+          "icono": "icon-material-outline-fingerprint",
+          "ruta": "credenciales"
+        },
+  
+        {
+          "texto": "Importar",
+          "icono": "icon-feather-upload",
+          "ruta": "importar",
+          "visible": true,
+          "admin": true
+        }
+      ]
+    },
+  
+    {
+      "texto": "RR.HH.",
+      "icono": "icon-feather-users",
+      "items": [
+        {
+          "texto": "Empleados",
+          "icono": "icon-feather-users",
+          "ruta": "usuarios"
+        },
+        {
+          "texto": "Estructura",
+          "icono": "icon-line-awesome-sitemap",
+          "items": [
+            {
+              "texto": "Empresas",
+              "icono": "icon-material-outline-business",
+              "ruta": "empresas"
+            },
+            {
+              "texto": "Sucursales",
+              "icono": "icon-feather-square",
+              "ruta": "sucursales"
+            },
+            {
+              "texto": "Departamentos",
+              "icono": "icon-feather-grid",
+              "ruta": "departamentos"
+            },
+            {
+              "texto": "Sub-Departamentos",
+              "icono": "icon-material-outline-layers",
+              "ruta": "subdepartamentos"
+            },
+            {
+              "texto": "Ubicaciones",
+              "icono": "icon-feather-map-pin",
+              "ruta": "ubicaciones"
+            }
+          ]
+        },
+        {
+          "texto": "Horarios",
+          "icono": "icon-material-outline-date-range",
+          "items": [
+            {
+              "texto": "Plantillas",
+              "icono": "icon-material-outline-date-range",
+              "ruta": "horarios-plantillas"
+            },
+            {
+              "texto": "Horarios de empleados",
+              "icono": "icon-material-outline-access-time",
+              "ruta": "horarios"
+            }
+          ]
+        },
+        {
+          "texto": "Dispositivos asignados",
+          "icono": "icon-feather-tablet",
+          "ruta": "usuario-dispositivos"
+        }
+      ]
+    },
+  
+    {
+      "texto": "Servicios Especiales",
+      "icono": "icon-material-outline-bookmarks",
+      "items": [
+        {
+          "texto": "Documentos de Créditos",
+          "icono": "icon-line-awesome-credit-card",
+          "ruta": "documentos-creditos"
+        },
+        {
+          "texto": "Control de Almacen",
+          "icono": "icon-line-awesome-cubes",
+          "items": [
+            {
+              "texto": "Productos",
+              "icono": "icon-line-awesome-cubes",
+              "ruta": "almacen-producto"
+            },
+            {
+              "texto": "Entradas",
+              "icono": "icon-line-awesome-sign-in",
+              "ruta": "almacen-entrada"
+            },
+            {
+              "texto": "Salidas",
+              "icono": "icon-line-awesome-sign-out",
+              "ruta": "almacen-salida"
+            },
+            {
+              "texto": "Ajustes",
+              "icono": "icon-line-awesome-pencil-square-o",
+              "ruta": "almacen-ajuste"
+            },
+            {
+              "texto": "Bodegas",
+              "icono": "icon-line-awesome-home",
+              "ruta": "almacen-bodega"
+            },
+            {
+              "texto": "Divisiones",
+              "icono": "icon-line-awesome-map-signs",
+              "ruta": "almacen-division"
+            },
+            {
+              "texto": "Celdas",
+              "icono": "icon-line-awesome-database",
+              "ruta": "almacen-celda"
+            },
+            {
+              "texto": "Tipos de Productos",
+              "icono": "icon-line-awesome-file-powerpoint-o",
+              "ruta": "almacen-tipo-producto"
+            },
+            {
+              "texto": "Categorías",
+              "icono": "icon-line-awesome-tags",
+              "ruta": "almacen-categoria"
+            },
+            {
+              "texto": "Sub-categoría",
+              "icono": "icon-line-awesome-columns",
+              "ruta": "almacen-subcategoria"
+            },
+            {
+              "texto": "Marca",
+              "icono": "icon-line-awesome-flag-o",
+              "ruta": "almacen-marca"
+            },
+            {
+              "texto": "Modelos",
+              "icono": "icon-line-awesome-check-circle-o",
+              "ruta": "almacen-modelo"
+            },
+            {
+              "texto": "Proveedores",
+              "icono": "icon-line-awesome-truck",
+              "ruta": "almacen-proveedor"
+            }
+          ]
+        },
+        {
+          "texto": "Códigos QR",
+          "icono": "icon-line-awesome-qrcode",
+          "ruta": "codigos-qr"
+        }
+      ]
+    },
+    {
+      "texto": "EZA Digital",
+      "icono": "icon-line-awesome-share-alt",
+      "items": [
+        {
+          "texto": "Catalogos",
+          "icono": "icon-feather-book-open",
+          "items": [
+            {
+              "texto": "Países",
+              "texto_alt": "Paises",
+              "icono": "icon-line-awesome-globe",
+              "ruta": "paises"
+            },
+            {
+              "texto": "Departamento",
+              "texto_alt": "Departamento",
+              "icono": "icon-line-awesome-building",
+              "ruta": "departamentos-geo"
+            },
+            {
+              "texto": "Municipio",
+              "texto_alt": "Municipio",
+              "icono": "icon-line-awesome-map-marker",
+              "ruta": "municipios"
+            },
+            {
+              "texto": "Barrios",
+              "texto_alt": "Barrios",
+              "icono": "icon-line-awesome-home",
+              "ruta": "barrios"
+            },
+            {
+              "texto": "Documentos",
+              "texto_alt": "documentos",
+              "icono": "las la-sitemap",
+              "ruta": "documentos-intreza"
+            }
+          ]
+        },
+        {
+          "texto": "Cliente",
+          "icono": "icon-line-awesome-users",
+          "items": [
+            {
+              "texto": "Clientes",
+              "texto_alt": "Clientes",
+              "icono": "las la-portrait",
+              "ruta": "clientes"
+            },
+            {
+              "texto": "Personas",
+              "texto_alt": "Personas",
+              "icono": "las la-address-card",
+              "ruta": "clientes-persona"
+            },
+            {
+              "texto": "Empresas",
+              "texto_alt": "Empresas",
+              "icono": "icon-line-awesome-industry",
+              "ruta": "clientes-empresa"
+            }
+          ]
+        },
+        {
+          "texto": "Credito",
+          "icono": "las la-donate",
+          "items": [
+            {
+              "texto": "Presolicitud",
+              "texto_alt": "presolicitud",
+              "icono": "las la-donate",
+              "ruta": "presolicitud"
+            },
+            {
+              "texto": "Seguimiento de credito",
+              "texto_alt": "Seguimiento de credito",
+              "icono": "las la-business-time",
+              "ruta": "seguimiento-credito"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  

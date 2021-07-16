@@ -1,0 +1,261 @@
+<template>
+    <div>
+        <section class="form">
+            <form>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <input-seleccion
+                            v-model="item.id_usuario"
+                            nombre="id_usuario"
+                            etiqueta="Usuario"
+                            :items="usuarios"
+                            plantilla="avatar"
+                            :buscador="true"
+                            @cambiado="cargarUbicaciones"
+                        ></input-seleccion>
+                    </div>
+                </div>
+
+                <div class="row no-etiqueta">
+                    <div class="col-sm-5">
+                        <input-fecha
+                            v-model="filtro.desde"
+                            nombre="desde"
+                            etiqueta="Desde"
+                            formato="DD/MM/YYYY h:mm A"
+                        ></input-fecha>
+                    </div>
+                    <div class="col-sm-5">
+                        <input-fecha
+                            v-model="filtro.hasta"
+                            nombre="hasta"
+                            etiqueta="Hasta"
+                            formato="DD/MM/YYYY h:mm A"
+                        ></input-fecha>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="button dark ripple-effect" style="height:47px;" @click="cargarUbicaciones">
+                          <i class="icon-feather-refresh-cw"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <div id="mapid" ref="mapa"></div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "EzadigitalUbicacionesUsuario.vue",
+
+        props: {
+            urls: Object,
+            avatar_defecto: String,
+            id_usuario: Number,
+        },
+
+        data: () => ({
+            fuente: 'UsuarioUbicacion',
+            subdirectorio: 'Ezadigital',
+            titulo_singular: 'Ubicación',
+            titulo_plural: 'Ubicaciones',
+            icono: 'icon-line-awesome-map-marker',
+            items: [],
+            item: {
+                id: 0,
+                id_usuario: 0,
+                longitud: '',
+                latitud: '',
+                fecha: '',
+            },
+            vista_items: true,
+            vista_formulario: false,
+            texto_buscado: '',
+            propiedades_buscadas: [
+                'longitud',
+                'latitud',
+            ],
+            filtro: {
+              desde: '',
+              hasta: '',
+            },
+            usuarios: [],
+            mapa: null,
+            marcadores: null,
+        }),
+
+        methods: {
+            limpiarItem() {
+                this.item.id = 0;
+                this.item.id_usuario = 0;
+                this.item.longitud = '';
+                this.item.latitud = '';
+                this.item.fecha = '';
+            },
+
+            setItemData(data) {
+                this.item.id = data.id;
+                this.item.id_usuario = data.id_usuario;
+                this.item.longitud = data.longitud;
+                this.item.latitud = data.latitud;
+                this.item.fecha = data.fecha;
+            },
+
+            cargarDataAdicional() {
+                this.$http.get(this.urls.get, {
+                    params: {
+                        _fuente: this.fuente,
+                        _accion: 'cargarUsuarios',
+                    }
+                })
+                    .then(response => {
+                        if (response.status === 200) {
+                            const usuarios = response.data.usuarios;
+                            let items = [];
+
+                            for (const usuario of usuarios) {
+                                items.push({
+                                    id: usuario.id,
+                                    nombre: usuario['nombre_persona'],
+                                    subtexto: usuario.nombre.toLowerCase() + (usuario.num_control !== null ? (' (' + usuario.num_control + ')') : ''),
+                                    img: usuario.foto,
+                                });
+                            }
+
+                            this.usuarios = items;
+
+                            if (this.item.id_usuario) {
+                                this.cargarUbicaciones();
+                            }
+                        }
+                    });
+            },
+
+            cargarUbicaciones() {
+                this.$http.get(this.urls.get, {
+                    params: {
+                        _fuente: this.fuente,
+                        _accion: 'cargarUbicaciones',
+                        id: this.item.id_usuario,
+                        desde: this.filtro.desde,
+                        hasta: this.filtro.hasta,
+                    }
+                })
+                    .then(response => {
+                        if (response.status === 200) {
+                            const data = response.data;
+
+                            if (!data.ok) return;
+
+                            if (this.mapa === null) {
+                                this.mapa = L
+                                    .map('mapid')
+                                    .setView([
+                                        data['lat'] ? data['lat'] : 12.1238,
+                                        data['lon'] ? data['lon'] : -86.2823],
+                                        13
+                                    );
+
+                                /*let LeafIcon = L.Icon.extend({
+                                    options: {
+                                        shadowUrl: 'leaf-shadow.png',
+                                        iconSize:     [38, 95],
+                                        shadowSize:   [50, 64],
+                                        iconAnchor:   [22, 94],
+                                        shadowAnchor: [4, 62],
+                                        popupAnchor:  [-3, -76]
+                                    }
+                                });*/
+                                /**/
+
+                                console.log('map initialized');
+                            }
+                            else {
+                                console.log('map exists');
+
+                                const map = this.mapa;
+
+                                map.eachLayer(function (layer) {
+                                    map.removeLayer(layer);
+                                });
+                            }
+
+                            let customIcon = L.Icon.extend({
+                                options: {
+                                    shadowUrl: 'img/leaflet/marker-shadow.png',
+                                    iconSize:     [25, 41], // size of the icon
+                                    shadowSize:   [41, 41], // size of the shadow
+                                    iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
+                                    shadowAnchor: [11, 41],  // the same for the shadow
+                                    popupAnchor:  [0, -50] // point from which the popup should open relative to the iconAnchor
+                                }
+                            });
+
+                            let icon = [];
+
+                            icon[0] = new customIcon({iconUrl: 'img/leaflet/marker-icon-red.png'});
+                            for (let i = 1; i <= 30; i++) {
+                                //icon[i] = L.icon({iconUrl: 'img/leaflet/marker-icon-0' + i + '.png', shadowUrl: 'img/leaflet/marker-shadow.png'});
+                                icon[i] = new customIcon({iconUrl: 'img/leaflet/marker-icon-' + (i < 9 ? ('0' + i) : i) + '.png'});
+                            }
+
+                            this.marcadores = L.layerGroup().addTo(this.mapa);
+
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '',//&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+                            }).addTo(this.mapa);
+
+                            let n = 1;
+                            const total_ubicaciones = data['ubicaciones'].length;
+
+                            for (const ubicacion of data['ubicaciones']) {
+                                let options;
+
+                                if (n == total_ubicaciones) {
+                                    options = { icon: icon[0] };
+                                }
+                                else if (n < 30) {
+                                    options = { icon: icon[n] };
+                                } else {
+                                    options = {};
+                                }
+
+                                L.marker({
+                                    lat: ubicacion['latitud'],
+                                    lon: ubicacion['longitud'],
+                                }, options)
+                                    .bindPopup(formatoFechaApp(ubicacion['fecha_hora'], undefined, 'fecha_hora'))
+                                    .addTo(this.marcadores);
+
+                                n++;
+                            }
+
+                        }
+                    });
+            },
+        },
+
+        mounted() {
+            if (typeof this.$route.params.id_usuario !== 'undefined') {
+                this.item.id_usuario = parseInt(this.$route.params.id_usuario);
+            }
+
+            /*this.cargarData({
+                id_usuario: this.$route.params.id_usuario,
+            });*/
+
+            this.cargarDataAdicional();
+            //this.cargarUbicaciones();
+        },
+    }
+</script>
+
+<style scoped>
+    #mapid {
+        width: 100%;
+        height: 600px;
+    }
+</style>

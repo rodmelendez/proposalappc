@@ -1,0 +1,103 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Alfredo Fleming
+ * Date: 22/6/2019
+ * Time: 11:37 AM
+ */
+
+namespace App;
+
+class UsuarioUbicacion extends Modelo {
+
+    public $timestamps = true;
+
+    protected $table = 'usuario_ubicacion';
+
+    /**
+     * Los atributos que se pueden guardar
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id_usuario',
+        'latitud',
+        'longitud',
+        'telefono',
+        'estado_bateria',
+        'fecha_hora',
+    ];
+
+
+    /**
+     * Devuélve las reglas de validación para un campo específico o el arreglo de reglas por defecto
+     *
+     * @param string $campo     Nombre del campo del que se quiere las reglas de validación.
+     * @param int $ignorar_id    ID del elemento que se está editando, si es el caso.
+     * @return array|string
+     */
+    public static function reglasValidacion($campo = null, $ignorar_id = 0) {
+        $reglas = [
+            'id_usuario'    => 'required|integer',
+            'latitud'       => 'max:63',
+            'longitud'      => 'max:63',
+            'telefono'      => 'max:63',
+            'estado_bateria'=> 'max:31',
+            'fecha_hora'    => 'date_format:Y-m-d H:i:s',
+        ];
+        if ($campo === null) {
+            return $reglas;
+        }
+        return $reglas[$campo] ?? '';
+    }
+
+
+    # RELACIONES
+
+
+    # FILTROS
+
+
+    # ASIGNACIONES
+
+
+    # LECTURAS
+
+
+    # METODOS
+
+    public static function ubicacionesDeUsuario($id_usuario, $desde = null, $hasta = null) {
+        $items = self
+            ::where('id_usuario', '=', (int)$id_usuario);
+        
+        if (!empty($desde)) {
+            $items = $items->where('fecha_hora', '>=', self::fechaHoraFormato($desde));
+        }
+        
+        if (!empty($hasta)) {
+            $items = $items->where('fecha_hora', '<=', self::fechaHoraFormato($hasta, '23:59:59'));
+        }
+        
+        return $items
+            ->orderBy('fecha_hora', 'DESC')
+            ->orderBy('fecha_creacion', 'DESC')
+            ->take(30)
+            ->get([
+                'id',
+                'latitud',
+                'longitud',
+                'fecha_hora',
+                'telefono',
+                'estado_bateria',
+            ])
+            ->toArray();
+    }
+
+
+    private static function fechaHoraFormato($fecha_hora, $hora_defecto = '00:00:00') : string {
+        [$fecha, $hora] = explode(' ', $fecha_hora, 2);
+        $fecha = Funciones::formatoFechaSistema($fecha);
+        $hora = !empty($hora) ? Funciones::formatoHoraSistema($hora) : $hora_defecto;
+        return $fecha . ' ' . $hora;
+    }
+}

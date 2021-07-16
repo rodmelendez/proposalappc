@@ -1,0 +1,71 @@
+.file-list, .file-list ul{
+    list-style-type: none;
+    font-size:1em;
+    line-height:2.5em;
+    margin-left:20px;
+    padding-left:18px;
+    border-left:1px dotted #aaa;
+}
+.file-list li{
+    position: relative;
+    padding-left:25px;
+}
+.file-list li a{
+    text-decoration: none;
+    color:#444;  
+}
+.file-list li a:before{
+    display:block;
+    content: " ";
+    width:10px;
+    height:1px;
+    position:absolute;
+    border-bottom:1px dotted #aaa;
+    top:1.1em;
+    left:-14px;
+}
+.file-list li:before{
+    list-style-type: none;
+    font-family: "Line-Awesome" !important;
+    display:block;
+    content:' ';
+    position:absolute;
+    top:0;
+    left:0;
+    width:20px;
+    height:20px;
+    font-size:1.4em;
+    color:#555;
+}
+.file-list .folder-root{
+    list-style-type: none;
+}
+.file-list .folder-root a{
+    text-decoration:none;
+}
+.file-list .folder-root:before{
+    content: "\F1FE";
+    color:#FFD04E;
+}
+.file-list .folder-root.open:before{
+    content: "\F200";
+}
+li.folder-root ul{
+    transition: all .3s ease-in-out;
+    overflow:hidden;
+}
+li.folder-root.closed>ul{
+   opacity:0;
+   max-height:0;
+}
+li.folder-root.open>ul{
+   opacity:1;
+   display:block;
+   max-height:1000px;
+}
+.file-list .file-item:before{
+    content: "\E961";
+    font-family: 'Feather-Icons' !important;
+    font-size: 18px;
+    color: blue;
+}
