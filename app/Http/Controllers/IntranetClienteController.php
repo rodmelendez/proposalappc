@@ -198,6 +198,20 @@ class IntranetClienteController extends Controlador
 
     /** API **/
 
+    public static function clientesGet()
+    {
+        $clientes=IntranetCliente::with('contacto','direccion', 'presolicitudes')->get();
+
+        return $clientes;
+    }
+
+    public static function clienteGet($id)
+    {
+        $cliente = IntranetCliente::with('contacto','direccion', 'presolicitudes')->find($id);
+
+        return $cliente;
+    }
+
     public static function apiRegistrar($registro,$usuario)
     {
         //dd($registro);
@@ -223,11 +237,6 @@ class IntranetClienteController extends Controlador
             return $client;
         }
         return false;
-    }
-
-    public static function clienteGet($id)
-    {
-      return IntranetCliente::find($id);
     }
 
     public static function apiEditar($data,$id)

@@ -129,4 +129,6 @@ Route::post('usuario', 'ApiController@iniciarSesionPost');
     Route::post('contacto/{token?}',['as' => 'contacto', 'uses' => 'EzaApiController@contactoPost']);
     Route::put('contactoupdate/{id}',['as' => 'contactoupdate', 'uses' => 'EzaApiController@contactoPut']);
 
+    Route::get('productos', ['as' => 'productos', 'uses' => 'EzaApiController@productos']);
+
   }

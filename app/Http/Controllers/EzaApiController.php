@@ -207,12 +207,12 @@ class EzaApiController   {
 
     public function clientes($token = null)
     {
-        // if ($token === null) {
-        //     $token = Input::get('token');
-        // }
-        // if (!($usuario = $this->buscarUsuarioPorToken($token))) {
-        //     return $this->error('Token inválido.');
-        // }
+         if ($token === null) {
+             $token = Input::get('token');
+         }
+         if (!($usuario = $this->buscarUsuarioPorToken($token))) {
+             return $this->error('Token inválido.');
+         }
 
         /*$clientes = IntranetClienteController::infoClientes(
             Input::get('inicio'),
@@ -225,28 +225,68 @@ class EzaApiController   {
             Input::get('ruc'),
             Input::get('caracterNombre')
         );*/
-        $clientes = IntranetCliente::with('contacto','direccion', 'presolicitudes')->get();
-        return response()->json(['clientes'=>$clientes],200);
+        $clientes = IntranetClienteController::clientesGet();
+        return response()->json(['usuario'=>$usuario,'clientes'=>$clientes],200);
     }
 
     public function cliente($id)
     {
-        //$cliente = DB::table('intranet_cliente')->where('id',$id)->first();
-        $cliente = IntranetCliente::with('contacto','direccion', 'presolicitudes')->find($id);
-        return response()->json($cliente,200);
+        $token =Input::get('token');
+        $usuario= $this->buscarUsuarioPorToken($token);
+        //dd($usuario);
+        if ($usuario)
+        {
+            $cliente = IntranetClienteController::clienteGet($id);
+
+            if($cliente)
+            {
+                return response()->json(['usuario'=>$usuario, 'presolicitudes'=>$cliente],200);
+            }
+            return response()->json(['error'=>'presolicitud no encontrada'],404);
+        }
+        return response()->json(['error'=>'usuario no encontrado', 'usuario'=>$usuario], 404);
+
     }
 
-    public function presolicitudes()
+    public function productos($token = null)
     {
-         /*if ($token === null) {
+        if ($token === null) {
+            $token = Input::get('token');
+        }
+        if (!($usuario = $this->buscarUsuarioPorToken($token))) {
+            return $this->error('Token inválido.');
+        }
+
+        /*$clientes = IntranetClienteController::infoClientes(
+            Input::get('inicio'),
+            Input::get('final'),
+            Input::get('contactos'),
+            Input::get('presolicitudes'),
+            Input::get('creditos'),
+            Input::get('direccion'),
+            Input::get('dni'),
+            Input::get('ruc'),
+            Input::get('caracterNombre')
+        );*/
+        $productos = IntranetPresolicitudProductoController::productosGet();
+        return response()->json(['usuario'=>$usuario,'productos'=>$productos],200);
+    }
+
+    public function presolicitudes($token = null)
+    {
+         if ($token === null) {
              $token = Input::get('token');
          }
          if (!($usuario = $this->buscarUsuarioPorToken($token))) {
              return $this->error('Token inválido.');
-         }*/
+         }
+
+        $presolicitud = IntranetPresolicitudController::apiPresolicitudesGet($usuario);
+
+        return response()->json(['usuario'=>$usuario,'clientes'=>$presolicitud],200);
 
 
-        $usuario = $this->validarUsuario('IntranetPresolicitud');
+        /*$usuario = $this->validarUsuario('IntranetPresolicitud');
         //dd($usuario);
         if ($usuario)
         {
@@ -262,10 +302,10 @@ class EzaApiController   {
             }
             return response()->json(['error'=>'presolicitud no encontrada'],404);
         }
-        return response()->json(['error'=>'usuario no encontrado', 'usuario'=>$usuario], 404);
+        return response()->json(['error'=>'usuario no encontrado', 'usuario'=>$usuario], 404);*/
     }
 
-    public function presolicitud($token = null)
+    public function presolicitud($id)
     {
         // if ($token === null) {
         //     $token = Input::get('token');
@@ -273,7 +313,7 @@ class EzaApiController   {
         // if (!($usuario = $this->buscarUsuarioPorToken($token))) {
         //     return $this->error('Token inválido.');
         // }
-        $usuario = User::where('nombre', Input::get('nombre_usuario'))->first();
+        /*$usuario = User::where('nombre', Input::get('nombre_usuario'))->first();
         if($usuario){
             $data =IntranetPresolicitudController::presolicitudGet(
                 Input::get('id'),
@@ -285,7 +325,21 @@ class EzaApiController   {
             }
             return response()->json(['error'=>'presolicitud no encontrada'],404);
         }
-        return response()->json(['error'=>'usuario no encontrado'], 404);
+        return response()->json(['error'=>'usuario no encontrado'], 404);*/
+        $token =Input::get('token');
+        $usuario= $this->buscarUsuarioPorToken($token);
+        //dd($usuario);
+        if ($usuario)
+        {
+            $presolicitud = IntranetPresolicitudController::apiPresolicitudGet($id);
+
+            if($presolicitud)
+            {
+                return response()->json(['usuario'=>$usuario, 'presolicitud'=>$presolicitud],200);
+            }
+            return response()->json(['error'=>'presolicitud no encontrada'],404);
+        }
+        return response()->json(['error'=>'usuario no encontrado', 'usuario'=>$usuario], 404);
     }
 
     /** API POST **/

@@ -443,30 +443,7 @@ class IntranetPresolicitudController extends Controlador{
     }
 
     /******* API *******/
-
     #IntranetDocumentoCategoria
-
-    public static function presolicitudGet($id_presolicitud, $id_carpeta, $usuario)
-    {
-        $data = [];
-        $presolicitud = IntranetPresolicitud::
-        Join('intranet_cliente', 'intranet_presolicitud.id_cliente', 'intranet_cliente.id')
-            ->Join('intranet_presolicitud_producto', 'intranet_presolicitud.id_producto', 'intranet_presolicitud_producto.id')
-            ->Join("usuario", "intranet_presolicitud.id_usuario", "usuario.id")
-            ->where("usuario.nombre", $usuario->nombre)
-            ->where("intranet_presolicitud.id", $id_presolicitud)
-            ->get(self::camposPresolicitudes())
-            ->first();
-
-        if(!$presolicitud){
-            return null;
-        }
-        // $presolicitud->carpetas = self::carpetasPresolicitud($id_presolicitud,$id_carpeta);
-        $data["presolicitud"] = $presolicitud;
-        $data["carpetas"] = self::presolicitudCarpetas($presolicitud);
-        return $data;
-    }
-
     /*public static function presolicitudes($inicio, $final, $usuarioprueba)
     {
        // dd($usuarioprueba);
@@ -489,28 +466,6 @@ class IntranetPresolicitudController extends Controlador{
             ->get(self::camposPresolicitudes());
         return $presolicitudes;
     }*/
-    public static function presolicitudes($usuario)
-    {
-        //dd($usuario);
-        /*if(isset($inicio) && isset($final))
-        {
-            $presolicitudes =  IntranetPresolicitud::
-            leftJoin('intranet_cliente', 'intranet_presolicitud.id_cliente', 'intranet_cliente.id')
-                ->leftJoin('intranet_presolicitud_producto', 'intranet_presolicitud.id_producto', 'intranet_presolicitud_producto.id')
-                ->leftJoin("usuario", "intranet_presolicitud.id_usuario", "usuario.id")
-                //->whereBetween('intranet_presolicitud.id', [$inicio,$final])
-                //->where("usuario.nombre", $usuario->nombre)
-                ->get(self::camposPresolicitudes());
-            return $presolicitudes;
-        }*/
-        $presolicitudes = IntranetPresolicitud::
-        leftJoin('intranet_cliente', 'intranet_presolicitud.id_cliente', 'intranet_cliente.id')
-            ->leftJoin('intranet_presolicitud_producto', 'intranet_presolicitud.id_producto', 'intranet_presolicitud_producto.id')
-            ->leftJoin("usuario", "intranet_presolicitud.id_usuario", "usuario.id")
-            ->where("intranet_presolicitud.id_usuario", $usuario->id)
-            ->get(self::camposPresolicitudes());
-        return $presolicitudes;
-    }
 
     public static function carpetasPresolicitud($id_presolicitud,$id_carpeta)
     {
@@ -570,7 +525,50 @@ class IntranetPresolicitudController extends Controlador{
         return $documentoAlamacenado;
     }
 
-    /******Agregado el 21-05-21*********/
+    public static function apiPresolicitudesGet($usuario)
+    {
+        //dd($usuario);
+        /*if(isset($inicio) && isset($final))
+        {
+            $presolicitudes =  IntranetPresolicitud::
+            leftJoin('intranet_cliente', 'intranet_presolicitud.id_cliente', 'intranet_cliente.id')
+                ->leftJoin('intranet_presolicitud_producto', 'intranet_presolicitud.id_producto', 'intranet_presolicitud_producto.id')
+                ->leftJoin("usuario", "intranet_presolicitud.id_usuario", "usuario.id")
+                //->whereBetween('intranet_presolicitud.id', [$inicio,$final])
+                //->where("usuario.nombre", $usuario->nombre)
+                ->get(self::camposPresolicitudes());
+            return $presolicitudes;
+        }*/
+        $presolicitudes = IntranetPresolicitud::
+        leftJoin('intranet_cliente', 'intranet_presolicitud.id_cliente', 'intranet_cliente.id')
+            ->leftJoin('intranet_presolicitud_producto', 'intranet_presolicitud.id_producto', 'intranet_presolicitud_producto.id')
+            ->leftJoin("usuario", "intranet_presolicitud.id_usuario", "usuario.id")
+            ->where("intranet_presolicitud.id_usuario", $usuario->id)
+            ->get(self::camposPresolicitudes());
+        return $presolicitudes;
+    }
+
+    public static function apiPresolicitudGet($id)
+    {
+        $data = [];
+        $presolicitud = IntranetPresolicitud::
+        Join('intranet_cliente', 'intranet_presolicitud.id_cliente', 'intranet_cliente.id')
+            ->Join('intranet_presolicitud_producto', 'intranet_presolicitud.id_producto', 'intranet_presolicitud_producto.id')
+            ->Join("usuario", "intranet_presolicitud.id_usuario", "usuario.id")
+            //->where("usuario.nombre", $usuario->nombre)
+            ->where("intranet_presolicitud.id", $id)
+            ->get(self::camposPresolicitudes())
+            ->first();
+
+        if(!$presolicitud){
+            return null;
+        }
+        // $presolicitud->carpetas = self::carpetasPresolicitud($id_presolicitud,$id_carpeta);
+        $data["presolicitud"] = $presolicitud;
+        $data["carpetas"] = self::presolicitudCarpetas($presolicitud);
+        return $data;
+    }
+
     public static function apiRegistrar($presolicitud)
     {
         //dd($presolicitud);
