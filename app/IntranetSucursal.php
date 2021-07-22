@@ -12,4 +12,18 @@ class IntranetSucursal extends \App\Modelo
         'codigo'
     ];
 
+    public static function traerData() {
+        $campos = [
+            'id',
+            'codigo',
+            'nombre',
+        ];
+
+        return self::orderBy('nombre')->get($campos)->toArray();
+    }
+
+    //una sucursal tiene muchas presolicitudes
+    public function presolicitudes(){
+        return $this->hasMany('App\IntranetPresolicitud', 'id_sucursal', 'id');
+    }
 }

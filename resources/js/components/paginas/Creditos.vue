@@ -129,7 +129,7 @@
 
                     <div class="col-xl-12">
                         <input-texto
-                            :disabled="true"
+                            :disabled="false"
                             v-model="item.tasa_interes"
                             nombre="tasa_interes"
                             etiqueta="Tasa de interes"
@@ -138,10 +138,11 @@
 
                     <div class="col-xl-12">
                         <input-seleccion
-
-                            v-model="item.nombreSucursal"
-                            nombre="nombreSucursal"
+                            v-model="item.sucursal"
+                            nombre="Sucursal"
                             etiqueta="Sucursal"
+                            :items="sucursals"
+                            accesor="id"
                         />
                     </div>
 
@@ -165,7 +166,7 @@
 
                     <div class="col-xl-12">
                         <input-texto
-                            :disabled="true"
+                            :disabled="false"
                             v-model="item.descripcion"
                             nombre="descripcion"
                             etiqueta="Descripción"
@@ -174,7 +175,7 @@
 
                     <div class="col-xl-12">
                         <input-texto
-                            :disabled="true"
+                            :disabled="false"
                             v-model="item.direccion"
                             nombre="direccion"
                             etiqueta="Dirección"
@@ -203,7 +204,7 @@
                         <div class= "col-xl-4">
 
                             <div class="content">
-                                <h3>Emplados</h3>
+                                <h3>Empleados</h3>
                                 <ul class = "users-list">
                                     <li v-for="user in users" :key="user.id">
                                         <drag
@@ -861,6 +862,7 @@
             users: [],
             clients: [],
             products: [],
+            sucursals: [],
             monedas: [],
             documentModel: '',
             hiddenTemplates: [],
@@ -897,7 +899,8 @@
                 producto: null,
                 forma_credito: '',
                 tasa_interes: '',
-                nombreSucursal: '', //Id_sucursal,
+                 //Id_sucursal,id_sucursal: 0,
+                sucursal: null,
                 estado_presolicitud: '',
                 descripcion: '',
                 direccion: ''
@@ -950,7 +953,7 @@
                     estado_etapa: 1,
                     forma_credito: '',
                     tasa_interes: '',
-                    nombreSucursal: '', //Id_sucursal,
+                    id_sucursal: 0, //Id_sucursal,
                     estado_presolicitud: '',
                     descripcion: '',
                     direccion: ''
@@ -1047,6 +1050,7 @@
                         const data = response.data;
                         this.clients = data["clientes"];
                         this.products = data["productos"];
+                        this.sucursals = data["sucursales"];
                         this.folders = data["documentos"].map( f => ({...f, selected: false}) );
                         this.users   = data["usuariosPermitidos"].map( u => ({
                             name: u.nombre, 
@@ -1412,6 +1416,7 @@
                         fecha: moment().format(defaultDateFormat),
                         moneda: this.item.moneda_seleccionada.id,
                         id_producto: this.item.producto,
+                        id_sucursal: this.item.sucursal,
                         estado_etapa: this.item.estado_etapa, //cuando se crea la solicitud la etapa es 1
                         "user-role": creditUsers
                     });
@@ -3010,7 +3015,7 @@
         height: 100%;
         top: 0;
         left: 0;
-        visibility: 1;
+        visibility: visible;
     }
 
     .helper-content {

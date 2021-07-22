@@ -621,7 +621,9 @@ class IntranetPresolicitudController extends Controlador{
             //$registroupdate = IntranetPresolicitud::findOrFail($id);
             DB::table('intranet_presolicitud')
                 ->where('id', $id)
-                ->update(array( 'forma_credito' => Input::get('forma_credito'),
+                ->update(array( 'id_sucursal' => Input::get('id_sucursal'),
+                                'tasa_interes' => Input::get('tasa_interes'),
+                                'forma_credito' => Input::get('forma_credito'),
                                 'descripcion' => Input::get('descripcion'),
                                 'direccion'   => Input::get('direccion'),
                                 'monto_solicitado'   => Input::get('monto_solicitado'),

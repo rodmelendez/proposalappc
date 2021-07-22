@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IntranetPresolicitudRole extends \App\Modelo
+class IntranetPresolicitudRole extends Modelo
 {
 
     protected $table = 'intranet_user_rol_presolicitud';
