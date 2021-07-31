@@ -13,7 +13,7 @@
                 altura="160"
                 :width="width"
                 @modificado="makeNewPicture"
-                
+
             />
 
         </template>
@@ -22,22 +22,22 @@
         <!--Galeria Item-->
         <template v-else>
 
-            <div 
-                class="galeria-item freelancer unpop small sin-transicion galery-item-raw" 
-                :class="[ !active ? 'inactivo' : '', loading ? 'cargando' : '']" 
-                :data-id="item.id" 
+            <div
+                class="galeria-item freelancer unpop small sin-transicion galery-item-raw"
+                :class="[ !active ? 'inactivo' : '', loading ? 'cargando' : '']"
+                :data-id="item.id"
                 :data-key="item._key" ref="main_item"
             >
-                <div 
-                    class="freelancer-overview image-container" 
+                <div
+                    class="freelancer-overview image-container"
                     :style="'background-image:url(' + pictureUrl + ')'"
                 >
                     <div class="freelancer-overview-inner">
                         <!-- Actions -->
-                        <div 
-                            class="item-actions" 
-                            :class="are_actions_expanded ? 'expandido' : ''" 
-                            @mouseover="expandActions" 
+                        <div
+                            class="item-actions"
+                            :class="are_actions_expanded ? 'expandido' : ''"
+                            @mouseover="expandActions"
                             @mouseleave="hideActions"
                         >
                             <span class="bookmark-icon" @click="rotate">
@@ -54,13 +54,13 @@
                 </div>
 
                 <h4 class="picture-title"> {{imageFile.template.nombre}}</h4>
-                <input 
-                    type="text" 
-                    :name="label + '_titulo[]'" 
-                    class="custom-input" 
+                <input
+                    type="text"
+                    :name="label + '_titulo[]'"
+                    class="custom-input"
                     placeholder="Observaciones..."
-                    :value="imageFile.picture.observaciones === 'ninguna' ? '' : imageFile.picture.observaciones || ''" 
-                    @input="updateName" 
+                    :value="imageFile.picture.observaciones === 'ninguna' ? '' : imageFile.picture.observaciones || ''"
+                    @input="updateName"
                     ref="input_nombre"
                 >
 
@@ -68,11 +68,11 @@
                 <div class="freelancer-details">
                     <div class="freelancer-details-list">
                         <ul>
-                            <li>Ubicación 
+                            <li>Ubicación
                                 <strong>
-                                <a 
-                                    :href="'http://www.google.com/maps/place/' + imageFile.picture.latitud + ',' + imageFile.picture.longitud" 
-                                    v-if="typeof imageFile.picture.longitud === 'string' && imageFile.picture.longitud.length" 
+                                <a
+                                    :href="'http://www.google.com/maps/place/' + imageFile.picture.latitud + ',' + imageFile.picture.longitud"
+                                    v-if="typeof imageFile.picture.longitud === 'string' && imageFile.picture.longitud.length"
                                     target="_blank"
                                 >
                                     <i class="icon-material-outline-location-on"></i>
@@ -94,11 +94,11 @@
                 <input type="hidden" :name="name + '_foto[]'"     :value="imageFile.picture.foto">
                 <input type="hidden" :name="name + '_tipo[]'"     :value="imageFile.picture.tipo">
                 <input type="hidden" :name="name + '_kb[]'"       :value="imageFile.picture.kbs">
-                <input type="hidden" :name="name + '_camara[]'"   :value="imageFile.picturecamara">
+                <input type="hidden" :name="name + '_camara[]'"   :value="imageFile.picture.camara">
                 <input type="hidden" :name="name + '_latitud[]'"  :value="imageFile.picture.latitud">
                 <input type="hidden" :name="name + '_longitud[]'" :value="imageFile.picture.longitud">
                 <input type="hidden" :name="name + '_visible[]'"  :value="active ? 1 : 0">
-            
+
             </div>
                 <!--Iconos | actualmente no se usa
                 <div class="contenedor-iconos">

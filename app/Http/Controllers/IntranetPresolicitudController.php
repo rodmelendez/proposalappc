@@ -396,6 +396,7 @@ class IntranetPresolicitudController extends Controlador{
         }else {
             $carpetas = [];
             $subCarpetas = IntranetDocumentoCategoria::
+                
             where('id_documento_categoria', $carpeta->id)
                 ->get();
             if ($subCarpetas){
@@ -418,25 +419,25 @@ class IntranetPresolicitudController extends Controlador{
         $campos = [
             "intranet_presolicitud.id as id",
             //"intranet_presolicitud.id_simi as id_simi",
-            "intranet_presolicitud.id_cliente as id_cliente",
-            "intranet_presolicitud.id_producto as id_producto",
+            //"intranet_presolicitud.id_cliente as id_cliente",
+            //"intranet_presolicitud.id_producto as id_producto",
             "intranet_presolicitud.id_usuario as id_usuario",
             "intranet_cliente.nombre as nombre_cliente",
             "intranet_presolicitud_producto.nombre as nombre_producto",
             "usuario.nombre as nombre_usuario",
-            //"intranet_presolicitud.monto_solicitado as monto_solicitado",
+            "intranet_presolicitud.monto_solicitado as monto_solicitado",
             //"intranet_presolicitud.monto_asignado as monto_asignado",
             //"intranet_presolicitud.fecha_asignacion as fecha_asignacion",
-            //"intranet_presolicitud.fecha_solicitud as fecha_solicitud",
-            //"intranet_presolicitud.plazo_solicitado as plazo_solicitado",
+            "intranet_presolicitud.fecha_solicitud as fecha_solicitud",
+            "intranet_presolicitud.plazo_solicitado as plazo_solicitado",
             //"intranet_presolicitud.plazo_asignado as plazo_asignado",
-            //"intranet_presolicitud.moneda as moneda",
-            //"intranet_presolicitud.estado_etapa as estado_etapa",
-            //"intranet_presolicitud.estado_vida as estado_vida",
+            "intranet_presolicitud.moneda as moneda",
+            "intranet_presolicitud.estado_etapa as estado_etapa",
+            "intranet_presolicitud.estado_vida as estado_vida",
             //"intranet_presolicitud.fecha_creacion as fecha_creacion",
             //"intranet_presolicitud.fecha_actualizacion as fecha_actualizacion",
             //"intranet_presolicitud.fecha_eliminacion as fecha_eliminacion",
-            //"intranet_presolicitud.status as status",
+            "intranet_presolicitud.status as status",
         ];
 
         return $campos;
@@ -566,10 +567,11 @@ class IntranetPresolicitudController extends Controlador{
         // $presolicitud->carpetas = self::carpetasPresolicitud($id_presolicitud,$id_carpeta);
         $data["presolicitud"] = $presolicitud;
         $data["carpetas"] = self::presolicitudCarpetas($presolicitud);
+        //$data = IntranetPresolicitud::with('documentoPresolicitud', 'producto')->find($id);
         return $data;
     }
 
-    public static function apiRegistrar($presolicitud)
+    public static function apiRegistrar($presolicitud, $usuario)
     {
         //dd($presolicitud);
         $validarPresolicitud = new IntranetPresolicitud;
@@ -578,12 +580,10 @@ class IntranetPresolicitudController extends Controlador{
             $validarPresolicitud->reglasValidacion(null,0)
         );
         if($validacionPresolicitud->passes()){
-
-            //$nuevo = IntranetPresolicitud::create($Presolicitud);
             $nuevo = IntranetPresolicitud::create([
             'id_cliente' => $presolicitud['id_cliente'],
             'id_producto' => $presolicitud['id_producto'],
-            'id_usuario' => $presolicitud['id_usuario'],
+            'id_usuario' => $usuario['id'],
             'tasa_interes' => $presolicitud['tasa_interes'],
             'forma_credito' => $presolicitud['forma_credito'],
             'descripcion' => $presolicitud['descripcion'],
@@ -598,13 +598,6 @@ class IntranetPresolicitudController extends Controlador{
                 return false;
             }
             return $nuevo;
-            /*$data=array("id_cliente" => Input::get('id_cliente'),"id_producto" => Input::get('id_producto'),"id_usuario"=> Input::get('id_usuario'),
-                        "tasa_interes"=> Input::get('tasa_interes'), "forma_credito" => Input::get('forma_credito'), "descripcion" => Input::get('descripcion'),
-                        "direccion" => Input::get('direccion'), "monto_solicitado" => Input::get('monto_solicitado'), "fecha_solicitud" => $fecha_solicitud,
-                        "plazo_solicitado" => Input::get('plazo_solicitado'), "moneda" => Input::get('moneda'), "estado_etapa" => Input::get('estado_etapa'));
-            //dd($data);
-            DB::table('intranet_presolicitud')->insert($data);*/
-
         }
         return false;
     }
@@ -618,7 +611,6 @@ class IntranetPresolicitudController extends Controlador{
         );
         if($validacionPresolicitud->passes()){
 
-            //$registroupdate = IntranetPresolicitud::findOrFail($id);
             DB::table('intranet_presolicitud')
                 ->where('id', $id)
                 ->update(array( 'id_sucursal' => Input::get('id_sucursal'),
@@ -627,7 +619,7 @@ class IntranetPresolicitudController extends Controlador{
                                 'descripcion' => Input::get('descripcion'),
                                 'direccion'   => Input::get('direccion'),
                                 'monto_solicitado'   => Input::get('monto_solicitado'),
-                                'monto_asignado'   => Input::get('monto_asignado'),
+                                //'monto_asignado'   => Input::get('monto_asignado'),
                 ));
 
             return response()->json(['Registro actualizado'],200);

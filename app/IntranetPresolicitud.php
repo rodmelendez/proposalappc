@@ -39,9 +39,10 @@ class IntranetPresolicitud extends \App\Modelo
      */
     public static function reglasValidacion($campo = null, $ignorar_id = 0) {
         $reglas = [
-            'id_cliente'=>'integer',
+            'id_cliente'=>'required|integer',
+            'id_producto'=>'required',
             'monto_solicitado' => 'required',
-            'fecha_solicitud'=>'date',
+            'fecha_solicitud'=>'sometimes|required',
             'plazo_solicitado'=>'required|integer',
             'moneda'=>'integer',
             'estado_etapa'=>'integer',

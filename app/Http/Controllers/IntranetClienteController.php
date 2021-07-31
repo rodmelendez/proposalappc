@@ -214,7 +214,7 @@ class IntranetClienteController extends Controlador
 
     public static function apiRegistrar($registro,$usuario)
     {
-        //dd($registro);
+        //dd($usuario);
         $validarCliente = new IntranetCliente;
         $validacionCliente = Validator::make(
             $registro,
@@ -226,7 +226,7 @@ class IntranetClienteController extends Controlador
                 'id_sucursal' => $registro['id_sucursal'],
                 'id_tipo' => $registro['id_tipo'],
                 'fecha_registro' => now(),
-                'id_usuario' => $registro['id_usuario'],
+                'id_usuario' => $usuario['id'],
                 'dni' => $registro['dni']
             ]);
             $client->direccion()->createMany($registro['direcciones']);
@@ -242,13 +242,13 @@ class IntranetClienteController extends Controlador
     public static function apiEditar($data,$id)
     {
         //dd($data);
-        /*$validarCliente = new IntranetCliente;
+        $validarCliente = new IntranetCliente;
         $validacionCliente = Validator::make(
             $data,
             $validarCliente->reglasValidacion(null,0)
         );
         if($validacionCliente->passes()){
-            if($cliente['dni'] === null && $cliente['ruc'] === null){
+            /*if($cliente['dni'] === null && $cliente['ruc'] === null){
                 return false;
                }
             $cliente['id_usuario'] = $usuario->id;*/
@@ -256,43 +256,22 @@ class IntranetClienteController extends Controlador
                     ->update(array(
                         'nombre' => $data['nombre'],
                         //'id_sucursal' => $data['id_sucursal'],
-                        //'id_tipo' => $data['id_tipo'],
-                        //'fecha_registro' => now(),
+                        'id_tipo' => $data['id_tipo'],
                         //'id_usuario' => $data['id_usuario'],
-                        //'dni' => $data['dni']
+                        'dni' => $data['dni']
                     ));
-            //$client->direccion()->updateMany($data['direcciones']);
-            //$client->contacto()->updateMany($data['contacto']);
             /*if(!$client){
-
                 return false;
             }*/
             //return $client;
-
             return response()->json(['Registro actualizado'=> $client],200);
-        //}
-        //return false;
-    }
-
-    public static function apiEliminar($cliente,$usuario)
-    {
-        $validarCliente = new IntranetCliente;
-        $validacionCliente = Validator::make(
-            $cliente,
-            $validarCliente->reglasValidacion(null,0)
-        );
-        if($validacionCliente->passes()){
-            if($cliente['dni'] === null && $cliente['ruc'] === null){
-                return false;
-            }
-            $cliente['id_usuario'] = $usuario->id;
-            $eliminado = IntranetCliente::delete($cliente);
-            if(!$eliminado){
-                return false;
-            }
-            return $eliminado;
         }
         return false;
+    }
+
+    public static function apiEliminar($id)
+    {
+
     }
 
     /** Validaciones **/

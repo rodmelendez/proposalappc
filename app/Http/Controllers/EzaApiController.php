@@ -226,7 +226,7 @@ class EzaApiController   {
             Input::get('caracterNombre')
         );*/
         $clientes = IntranetClienteController::clientesGet();
-        return response()->json(['usuario'=>$usuario,'clientes'=>$clientes],200);
+        return response()->json(['clientes'=>$clientes],200);
     }
 
     public function cliente($id)
@@ -240,7 +240,7 @@ class EzaApiController   {
 
             if($cliente)
             {
-                return response()->json(['usuario'=>$usuario, 'presolicitudes'=>$cliente],200);
+                return response()->json(['cliente'=>$cliente],200);
             }
             return response()->json(['error'=>'presolicitud no encontrada'],404);
         }
@@ -269,7 +269,7 @@ class EzaApiController   {
             Input::get('caracterNombre')
         );*/
         $productos = IntranetPresolicitudProductoController::productosGet();
-        return response()->json(['usuario'=>$usuario,'productos'=>$productos],200);
+        return response()->json(['productos'=>$productos],200);
     }
 
     public function presolicitudes($token = null)
@@ -283,7 +283,7 @@ class EzaApiController   {
 
         $presolicitud = IntranetPresolicitudController::apiPresolicitudesGet($usuario);
 
-        return response()->json(['usuario'=>$usuario,'clientes'=>$presolicitud],200);
+        return response()->json(['presolicitudes'=>$presolicitud],200);
 
 
         /*$usuario = $this->validarUsuario('IntranetPresolicitud');
@@ -335,7 +335,7 @@ class EzaApiController   {
 
             if($presolicitud)
             {
-                return response()->json(['usuario'=>$usuario, 'presolicitud'=>$presolicitud],200);
+                return response()->json(['presolicitud'=>$presolicitud],200);
             }
             return response()->json(['error'=>'presolicitud no encontrada'],404);
         }
@@ -392,9 +392,12 @@ class EzaApiController   {
 
     public function direccionPost(Request $request)
     {
-        if($this->validarUsuario('IntranetDireccion')){
 
-            $data = IntranetDireccionController::apiRegistrar($request->except('token'));
+        $usuario = $this->validarUsuario('IntranetDireccion');
+        //dd($usuario);
+        if($usuario){
+
+            $data = IntranetDireccionController::apiRegistrar($request->except('token'), $usuario);
             if(!$data){
                 return response()->json(['error'=>'informacion defectuosa'],422);
             }
@@ -453,9 +456,10 @@ class EzaApiController   {
     public function presolicitudPost(Request $request)
     {
         //dd($request);
-        if($this->validarUsuario('IntranetPresolicitud')){
+        $usuario = $this->validarUsuario('IntranetPresolicitud');
+        if($usuario){
 
-            $data = IntranetPresolicitudController::apiRegistrar($request->except('token'));
+            $data = IntranetPresolicitudController::apiRegistrar($request->except('token'), $usuario);
             if(!$data){
                 return response()->json(['error'=>'informacion defectuosa'],422);
             }

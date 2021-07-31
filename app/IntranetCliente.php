@@ -34,8 +34,8 @@ class IntranetCliente extends \App\Modelo
         $reglas = [
             'id_sucursal'=> 'integer|nullable',
             'id_simi' => 'integer|nullable',
-            //'fecha_registro' =>'required|string',
-            'id_tipo' => 'integer',
+            'fecha_registro' =>'sometimes|required|string',
+            'id_tipo' => 'required|integer',
             'nombre'=>'max:63|required',
             'nombre_simi'=> 'max:63|nullable',
             'id_usuario' =>'integer',

@@ -185,7 +185,7 @@
                     <input type="hidden" name="_ruta" :value="ruta">
                     <input type="hidden" name="id" v-model="_item.id">
 
-                    <template v-if="showDefaultButtons" >
+                    <!--<template v-if="showDefaultButtons" >
                         <a v-if ="canSave" 
                             href="#" 
                             class="button ripple-effect button-sliding-icon big margin-top-30"
@@ -194,7 +194,11 @@
                             <span class="item-guardar">Guardar <i class="icon-feather-save"></i></span>
                             <span class="item-guardando">Guardando... <i class="icon-line-awesome-hourglass-2 fa-spin"></i></span>
                         </a>
-                    </template>
+                    </template>-->
+                  <a href="#" class="button ripple-effect button-sliding-icon big margin-top-30" @click="saveItem">
+                    <span class="item-guardar">Guardar <i class="icon-feather-save"></i></span>
+                    <span class="item-guardando">Guardando... <i class="icon-line-awesome-hourglass-2 fa-spin"></i></span>
+                  </a>
 
                     <slot name="form_footer"></slot>
                 </div>
